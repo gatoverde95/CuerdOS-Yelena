@@ -1,0 +1,9 @@
+Package: cuerd-welcome
+Priority: required
+Section: tools
+Maintainer: gatoverde9506@outlook.com
+Architecture: amd64
+Version: 2024.02.05
+Depends: 
+Description: Bienvenida de CuerdOS GNU/Linux. 
+ Es una aplicacion que ofrece paquetes, agregados o mas recursos para CuerdOS GNU/Linux.

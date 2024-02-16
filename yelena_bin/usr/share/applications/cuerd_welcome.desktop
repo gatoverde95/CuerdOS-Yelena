@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=CuerdOS Welcome
+Name[es]=Bienvenida de CuerdOS
+Comment=Welcome to CuerdOS
+Exec=python3 /usr/share/welcome_cuerd/welcome.py
+Icon=/usr/share/welcome_cuerd/welcome.png
+Terminal=false
+Type=Application
+Categories=Utility;
