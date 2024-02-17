@@ -1,13 +1,23 @@
 import os
 import gi
 import subprocess
+import configparser
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
 
 class WelcomeWindow(Gtk.Window):
 
     def __init__(self):
-        Gtk.Window.__init__(self, title="Bienvenido a CuerdOS")
+        Gtk.Window.__init__(self)
+        self.set_title("CuerdOS Yelena 1.0.1")
+
+        icon_path = "/usr/share/welcome_cuerd/welcome.png"
+
+        if os.path.exists(icon_path):
+            self.set_icon_from_file(icon_path)
+        else:
+            print("El archivo de icono no existe en la ruta especificada:", icon_path)
 
         self.set_default_size(600, 480)
         self.set_resizable(False)
@@ -32,7 +42,7 @@ class WelcomeWindow(Gtk.Window):
             main_box.pack_start(banner_image, False, False, 0)
 
         welcome_label = Gtk.Label()
-        welcome_label.set_text("Hola!! Bienvenido a CuerdOS GNU/Linux")
+        welcome_label.set_text("Hola!! Bienvenido a CuerdOS GNU/Linux | Cessna 1.1")
         main_box.pack_start(welcome_label, True, True, 0)
 
         buttons_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
@@ -43,8 +53,8 @@ class WelcomeWindow(Gtk.Window):
         button_data = [
             ("Web oficial", "web.png", self.on_web_button_clicked),
             ("Extras", "extras.png", self.on_extras_button_clicked),
-            ("Documentación", "documentation.png", self.on_documentation_button_clicked),
-            ("Lista de Aplicaciones", "apps.png", self.on_apps_button_clicked),
+            ("Sobre la Distribución", "documentation.png", self.on_documentation_button_clicked),
+            ("Aplicaciones", "apps.png", self.on_apps_button_clicked),
             ("Más Juegos...", "games.png", self.on_more_games_button_clicked)
         ]
 
@@ -75,47 +85,59 @@ class WelcomeWindow(Gtk.Window):
         github_button.set_image(Gtk.Image.new_from_file(os.path.join(icon_folder, "github.png")))
         github_button.connect("clicked", self.on_github_button_clicked)
         github_button.set_size_request(80, 40)
+        
+        reddit_button = Gtk.Button(label="Reddit")
+        reddit_button.set_image(Gtk.Image.new_from_file(os.path.join(icon_folder, "reddit.png")))
+        reddit_button.connect("clicked", self.on_reddit_button_clicked)
+        reddit_button.set_size_request(80, 40)
+        
+        sourceforge_button = Gtk.Button(label="SourceForge")
+        sourceforge_button.set_image(Gtk.Image.new_from_file(os.path.join(icon_folder, "sourceforge.png")))
+        sourceforge_button.connect("clicked", self.on_sourceforge_button_clicked)
+        sourceforge_button.set_size_request(80, 40)
 
         buttons_box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        buttons_box2.pack_start(telegram_button, False, False, 0)
+        buttons_box2.pack_start(github_button, False, False, 0)
         buttons_box2.pack_end(exit_button, False, False, 0)
-        buttons_box2.pack_end(telegram_button, False, False, 0)
-        buttons_box2.pack_end(github_button, False, False, 0)
+        buttons_box2.pack_end(reddit_button, False, False, 0)
+        buttons_box2.pack_end(sourceforge_button, False, False, 0)
         
         main_box.pack_end(buttons_box2, False, False, 0)
 
-        startup_check = Gtk.CheckButton(label="No iniciar al encender")
-        main_box.pack_end(startup_check, False, False, 0)
-
         # Image Viewer
+        self.setup_image_viewer()
+
+        # Conectar eventos para la navegación con la rueda del mouse
+        self.add_events(Gdk.EventMask.SCROLL_MASK)
+        self.connect("scroll-event", self.on_scroll_event)
+
+        # Conectar eventos para la navegación con botones de dirección
+        self.connect("key-press-event", self.on_key_press_event)
+
+    def setup_image_viewer(self):
+        # Ventana de previsualización de imágenes
+        image_viewer_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        # Barra de herramientas para navegación
+        toolbar_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        image_viewer_box.pack_end(toolbar_box, False, False, 0)
+
+        # Botón Atrás
+        back_button = Gtk.Button(label="Atrás")
+        back_button.connect("clicked", self.on_back_button_clicked)
+        toolbar_box.pack_start(back_button, False, False, 0)
+
+        # Botón Siguiente
+        next_button = Gtk.Button(label="Siguiente")
+        next_button.connect("clicked", self.on_next_button_clicked)
+        toolbar_box.pack_end(next_button, False, False, 0)
+
+        # Imagen
         self.image_viewer = Gtk.Image()
-        self.stack.add_named(self.image_viewer, "image_viewer")
-        self.image_paths = [
-            os.path.join(self.images_folder, "doc1.png"),
-            os.path.join(self.images_folder, "doc2.png"),
-            os.path.join(self.images_folder, "doc3.png")
-        ]
-        self.current_image_index = 0
-        self.image_viewer.set_from_file(self.image_paths[self.current_image_index])
+        image_viewer_box.pack_start(self.image_viewer, True, True, 0)
 
-        self.setup_header_bar()
-        self.hide_navigation_buttons()
-
-    def setup_header_bar(self):
-        self.header = Gtk.HeaderBar()
-        self.header.set_show_close_button(True)
-        self.header.props.title = "Bienvenido a CuerdOS"
-
-        self.back_button = Gtk.Button()
-        self.back_button.add(Gtk.Image.new_from_icon_name("go-previous", Gtk.IconSize.BUTTON))
-        self.back_button.connect("clicked", self.on_back_button_clicked)
-        self.header.pack_start(self.back_button)
-
-        self.next_button = Gtk.Button()
-        self.next_button.add(Gtk.Image.new_from_icon_name("go-next", Gtk.IconSize.BUTTON))
-        self.next_button.connect("clicked", self.on_next_button_clicked)
-        self.header.pack_start(self.next_button)
-
-        self.set_titlebar(self.header)
+        self.stack.add_named(image_viewer_box, "image_viewer")
 
     def on_web_button_clicked(self, button):
         subprocess.Popen(["firefox", "https://cuerdos.github.io/index_es.html"])
@@ -151,13 +173,20 @@ class WelcomeWindow(Gtk.Window):
     def on_github_button_clicked(self, button):
         subprocess.Popen(["firefox", "https://github.com/CuerdOS"])
 
+    def on_reddit_button_clicked(self, button):
+        subprocess.Popen(["firefox", "https://www.reddit.com/r/CuerdOS/"])
+
+    def on_sourceforge_button_clicked(self, button):
+        subprocess.Popen(["firefox", "https://sourceforge.net/projects/cuerdos/"])
+
     def on_documentation_button_clicked(self, button):
         self.stack.set_visible_child_name("image_viewer")
         self.show_navigation_buttons()
         self.image_paths = [
             os.path.join(self.images_folder, "doc4.png"),
             os.path.join(self.images_folder, "doc5.png"),
-            os.path.join(self.images_folder, "doc6.png")
+            os.path.join(self.images_folder, "doc6.png"),
+            os.path.join(self.images_folder, "doc7.png")
         ]
         self.current_image_index = 0
         self.image_viewer.set_from_file(self.image_paths[self.current_image_index])
@@ -176,12 +205,26 @@ class WelcomeWindow(Gtk.Window):
             self.image_viewer.set_from_file(self.image_paths[self.current_image_index])
 
     def hide_navigation_buttons(self):
-        self.back_button.hide()
-        self.next_button.hide()
+        pass
 
     def show_navigation_buttons(self):
-        self.back_button.show()
-        self.next_button.show()
+        pass
+
+    # Manejar el evento de desplazamiento de la rueda del mouse
+    def on_scroll_event(self, widget, event):
+        if event.direction == Gdk.ScrollDirection.DOWN:
+            self.on_back_button_clicked(None)
+        elif event.direction == Gdk.ScrollDirection.UP:
+            self.on_next_button_clicked(None)
+
+    # Manejar el evento de pulsación de tecla
+    def on_key_press_event(self, widget, event):
+        keyval = event.keyval
+        if keyval == Gdk.KEY_Left:
+            self.on_back_button_clicked(None)
+        elif keyval == Gdk.KEY_Right:
+            self.on_next_button_clicked(None)
+
 
 win = WelcomeWindow()
 win.connect("destroy", Gtk.main_quit)
