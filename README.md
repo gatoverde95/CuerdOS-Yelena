@@ -3,7 +3,7 @@
   <img src="/img/yen.png" alt="Logo" width="300" height="300">
 </p>
 
-Es una pantalla de bienvenida de codigo abierto programada desde creo en base Python y R para la geometria, diseñada exclusivamente para CuerdOS (corre en Debian pero es inreecomendable).
+Es una pantalla de bienvenida de codigo abierto programada desde cero en base Python y R para la geometria, diseñada exclusivamente para CuerdOS (corre en Debian pero es inreecomendable).
 
 | Captura de pantalla |
 | ------------------ |
