@@ -3,52 +3,23 @@
   <img src="/img/yen.png" alt="Logo" width="300" height="300">
 </p>
 
-Es un tema diseñado y adaptado para CuerdOS GNU/Linux, para LightDM. Estara disponible en la version Legacy.
+Es una pantalla de bienvenida de codigo abierto programada desde creo en base Python y R para la geometria, diseñada exclusivamente para CuerdOS (corre en Debian pero es inreecomendable).
 
 | Captura de pantalla |
 | ------------------ |
-| ![Standard Edition](/cuerd-png/lightdm.png) |
+| ![Standard Edition](/img/yel2.png) |
 
 ## ANTES DE INSTALAR, DEBES DESCARGAR LAS SIGUIENTES DEPENDENCIAS:
 
-- lightdm
-- lightdm-gtk-greeter
-- lightdm-gtk-greeter-settings
-- orchis-gtk-theme
-- slick-greeter
+- python3
 
-Comando (Abre sakura): `sudo apt install lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings orchis-gtk-theme slick-greeter`
+Comando (Abre sakura): `sudo apt install pyhton3`
 
 ## INSTALACIÓN:
 
-1. Abre sakura, luego ingresa `sudo su` y proporciona la contraseña.
+1. Abre sakura, luego ingresa `gdebi-gtk` (o Inicia el Instalador de Paquetes GDebi).
 
-2. Ejecuta el explorador de archivos como usuario Root:
-
-   | Entorno de Escritorio | Comando       |
-   |------------------------|---------------|
-   | Cinnamon               | `sudo nemo`   |
-   | MATE                   | `sudo caja`   |
-   | Xfce                   | `sudo thunar` |
-   | LXQt                   | `sudo pcmanfm-qt` |
-   | LXDE                   | `sudo pcmanfm`    |
-   | i3/Sway                | `sudo nemo`       |
-
-3. Luego, busca el disco local y navega a la siguiente dirección:
-   `/etc/lightdm/`
-   
-4. Copia todo lo de la carpeta del tema de LightDM
-   `CuerdOS LightDM Theme/files/etc/lightdm` a `/etc/lightdm/`.
-
-5. Copia los archivos del tema a la siguiente carpeta:
-   `/CuerdOS LightDM Theme/files/usr/share/backgrounds/lightdm` a `/usr/share/backgrounds/`.
-
-6. Después de haber instalado la configuración y parte del tema, sigue estos pasos:
-   - Abre sakura.
-   - Ejecuta `sudo su`.
-   - Luego, ejecuta `sudo dpkg-reconfigure lightdm`.
-
-7. ¡Reinicia tu máquina y listo!
+2. Le das instalar y luego proporcionas la contraseña.
 
 ## Descarga
-Esta en el apartado de Lanzamientos se encuentra un .tar.gz
+Esta en el apartado de Lanzamientos se encuentra un .deb
