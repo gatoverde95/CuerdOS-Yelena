@@ -1,0 +1,94 @@
+CuerdOS Changelog - GNU GPL 3.O, CC4.0 
+
+Cessna 1.1
+
+    Ahora hay compatibilidad con el sistema de archivos BTRFS (ya agregado en la última ISO de mantenimiento de CuerdOS 1.0).
+    BTRFS ahora es el sistema de archivos por defecto a través del instalador Calamares.
+    Imagen puesta al día con las últimas updates.
+    Se ha abandonado el soporte del kernel Xanmod en el repositorio para dar paso al nuevo kernel CuerdOS, un núcleo low latency personalizado para ofrecer buen rendimiento, ofreciéndose en esta iso la versión 6.6.23.
+    Preload está instalado y configurado por defecto.
+    Las configuraciones de I3 y Sway se han desplazado a los paquetes i3-config-reloaded y sway-config-reloaded, ya que tienen configuraciones tan diferentes que pueden generar problemas en CuerdOS 1.0.
+    Nuevos fondos de pantalla disponibles, además ahora hay la posibilidad de instalar fondos extras creados por la comunidad mediante el paquete "community-wallpapers".
+    Nuevos paquetes disponibles en el repositorio.
+    Algunos programas se han anclado a la barra de tareas en CuerdOS-Legacy, con el objetivo de que el usuario los vea más facilmente.
+    Se han borrado y se han preinstalado programas en la ISO: Pinta (reemplazo de GIMP), Minitube, Feh (reemplazo de Nitrogen para I3), juegos para DosBox sustituidos por programas nativos.
+    Nueva pantalla de Welcome, este programa brinda más información sobre la distribución y su software preinstalado.
+    Otros cambios minoritarios.
+
+Cessna 1.0
+
+    ISO actualizada a Debian 12.4.
+    Cambiados LS y CAT por LSD y BAT, son forks que mejoran las funciones y experiencia con estos programas de terminal.
+    Nuevos programas para la administración del sistema: cuerdos-control-panel, cups-switch y setup-repos.
+    Cambiamos el kernel empaquetado por Debian al kernel Xanmod LTS V1, ya que ofrece mejor rendimiento y compatibilidad, además de seguir nuestra filosofía.
+    Añadidos varios juegos como Doom (shareware), Tetris (fanmade) y Pacman (fanmade) de DosBox, somos vanguardistas pero nos gusta lo retro también.
+    Nuevo tema de color para Gedit.
+    Configuraciones de Sway e I3 actualizadas.
+    Nueva edición con el sabor de Xfce, llamado CuerdOS-Legacy.
+    Nuevo fondo de pantalla estilo arcade disponible.
+
+Cessna Release Candidate
+
+    Mudanza a Debian 12 (bookworm) completada.
+    Ahora hay una edición centrada en I3 y Sway, y otra centrada en Xfce (edición Xfce disponible proximamente).
+    Cambiamos Thunar por Nemo ya que este es compatible tanto con Wayland como Xorg de forma nativa.
+    Algunos programas como Osmo (Calendario) y Galculator (Calculadora) han sido añadidos.
+    Nuevo menú y powermenu basados en Rofi.
+    Conky se añadió en ambas sesiones para facilitar los atajos de teclado a los usuarios (en la web de sourceforge se ven las capturas).
+    La tienda gráfica de aplicacioens Bauh empaquetada en Deb.
+    Nuevas aplicaciones disponibles en los repositorios (ArmCord, Autofirma (Junta de Andalucía), VirtualBox.)
+
+Cessna Beta
+
+    Nuevo display manager basado en tty con soporte a Wayland (Ly).
+    Se ha integrado el gestor de ventanas Sway con el objetivo de dar soporte a Wayland.
+    Calamares ahora puede crear un usuario.
+    Integración de Apt-fast sobre Apt.
+    Se ha intercambiado Engrampa por File-roller, ya que este soporta Wayland.
+    Errores con paquetes retenidos solucionados.
+    Bug de los fondos de escritorio arreglado.
+    Nuevos temas GTK (CuerdOS-Evergreen y CuerdOS-Mentolado modo claro)
+
+Cessna Alpha2
+
+    Se ha cambiado el instalador de systemback por el instalador calamares.
+    Cambio en el método para realizar la iso.
+    Se han mejorado los temas de polybar y rofi.
+    Nuevos paquetes en el repositorio de la rama estable.
+
+Errores de lanzamiento
+Cessna 1.1
+
+    El script de Welcome-autostart no puede deshabilitar el inicio automático de CuerdOS-Yelena. (Arreglado en la ISO del 06-04-2024 y solucionable actualizando el sistema mediante apt.).
+    En neofetch sale Sway como DE, aunque estés usando cualquier otro entorno de escritorio o gestor de ventanas. (Arreglado en la ISO del 06-04-2024 .).
+
+Cessna 1.0
+
+    Las apps de los videojuegos preinstalados también están en la categoría "Sistema" (Se soluciona actualizando el sistema.).
+
+Cessna Release Candidate
+
+    La ISO no carga en algunos sistemas UEFI (arreglado tras la build 231125).
+    El paquete "linux-headers-amd64" desaparece tras la instalación del sistema.
+
+Cessna Beta
+
+    Pequeño bug en el autostart de un programa no existente.
+    El display manager Ly cambia su usuario por defecto al actualizar el paquete.
+    El atajo de teclas para la ayuda de Xfce no funciona (arreglado tras la update 1.1.4 del paquete config-updates).
+    El cursor de Sway va lento en los touchpads (arreglado tras la update 1.0.2 del paquete sway-config).
+
+Cessna Alpha2
+
+    El instalador calamares no puede crear un usuario (arreglado en beta).
+    En algunas pantallas, los fondos de escritorio personalizados no salen por defecto (arreglado en beta).
+    El paquete grub-efi tiene problemas en la configuración tras una de las últimas upgrades (arreglado en beta).
+
+Cessna Alpha1
+
+    La instalación falla en sistemas UEFI (arreglado en alpha2).
+    GRUB tiene no muestra el nombre de la distribución (arreglado en alpha2).
+    En algunas pantallas, los fondos de escritorio personalizados no salen por defecto (arreglado en beta).
+    El instalador no permite cambiar el idioma, y puede ser complicado para principiantes (arreglado en alpha2).
+
+
