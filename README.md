@@ -7,7 +7,7 @@ Es una pantalla de bienvenida de codigo abierto programada desde cero en base Py
 
 | Captura de pantalla |
 | ------------------ |
-| ![Standard Edition](/img/yel2.png) |
+| ![Standard Edition](/img/yel1.1.png) |
 
 ## ANTES DE INSTALAR, DEBES DESCARGAR LAS SIGUIENTES DEPENDENCIAS:
 
@@ -17,9 +17,11 @@ Comando (Abre sakura): `sudo apt install pyhton3`
 
 ## INSTALACIÓN:
 
-1. Abre sakura, luego ingresa `gdebi-gtk` (o Inicia el Instalador de Paquetes GDebi).
+1. Abre Debinstaller-sh y pon la ruta del .deb o ejecuta el .deb .
 
-2. Le das instalar y luego proporcionas la contraseña.
+2. Proporcionas la contraseña.
+
+3. El Script hará el trabajo de manera automatica.
 
 ## Descarga
 Esta en el apartado de Lanzamientos se encuentra un .deb
